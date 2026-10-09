@@ -1,0 +1,5 @@
+### 发送 hello 接口请求（透传调用智能助手）
+GET http://localhost:8080/test/hello
+currentuserid: AI0283
+environment: 56
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblR5cGUiOiJsb2dpbiIsImxvZ2luSWQiOiJBSTAyODMiLCJyblN0ciI6IlNWcGJleDV2TFFUU29Bclp5UWczdzBFTUN1cTdhM2wyIiwidXNlckluZm8iOnsic3RhZmZObyI6IkFJMDI4MyJ9fQ.yAw9iHy1mLFHj9GwgzZOOKj5mIwwIpQux92fMQclJNs

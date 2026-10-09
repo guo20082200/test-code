@@ -1,0 +1,163 @@
+{
+    "tenantId": 1 //租户id,必填
+    "mainTitle": "主标题，必填",
+    "subTitle": "副标题",
+    "taskType": "任务类型，必填",
+    "taskSource": "任务来源",
+    "processStatus": "任务状态，必填",
+    "taskFounderId": "发起人id，必填",
+    "taskFounderName": "发起人姓名",
+    "taskAcceptorId": "接收人id，必填",
+    "taskAcceptorName": "接收人姓名",
+    "taskArriveTime": "任务到达时间",
+    "taskPlanFinishTime": "任务计划完成时间",
+    "taskRealFinishTime": "任务实际完成时间",
+    "markInformation": [
+        "催办",
+        "转办"
+    ], //标记
+    "businessId": "100132", // 任务来源方的唯一标识
+    "labelInfo": [
+        {
+            "key": "优先级",
+            "value": "P0"
+        },
+        {
+            "key": "事业群",
+            "value": "123"
+        }
+    ], // 标签配置，可选
+    "visibleInformation": [
+        {
+            "key": "资产类型",
+            "value": "硬件"
+        },
+        {
+            "key": "资产编号",
+            "value": "zf0515"
+        }
+    ], //可见字段，key参数名，value-值
+    "buttonInformation": {
+        "pc": [
+            {
+                "action": {
+                    "redirect": {
+                        "ifToken": true, //需要带C大脑token时传true
+                        "params": {
+                            "instanceId": "1937455889927225344",
+                            "workGroupId": "1937442495629627394",
+                            "workItemId": "520"
+                        }, //？之后的拼的参数
+                        "path": "/brain-instance/#/task-detail", //?之前的相对路径，如：/brain-build/#/app-execute/app-forms-detail；/comnova-pmp/#/main/project/exec/taskdetail/taskprops
+                        "protocol": "http", //请求方式：http/https
+                        "ip": "" //当前服务ip
+                    },
+                    "type": "redirect"
+                },
+                "buttonName": "处理",
+                "highLight": true
+            },
+            {
+                "action": {
+                    "redirect": {
+                        "ifToken": true, //需要带C大脑token时传true
+                        "params": {
+                            "instanceId": "1937455889927225344",
+                            "workGroupId": "1937442495629627394",
+                            "workItemId": "520"
+                        }, //？之后的拼的参数
+                        "path": "/brain-instance/#/task-detail", //?之前的相对路径，如：/brain-build/#/app-execute/app-forms-detail；/comnova-pmp/#/main/project/exec/taskdetail/taskprops
+                        "protocol": "http", //请求方式：http/https
+                        "ip": "" //当前服务ip
+                    },
+                    "type": "redirect"
+                },
+                "buttonName": "查看",
+                "highLight": true
+            }
+        ], //排序按当前列表顺序排列，显隐问题不再由个人指挥中心控制
+        "mobile": [
+            {
+                "action": {
+                    "redirect": {
+                        "ifToken": true, //需要带C大脑token时传true
+                        "params": {
+                            "instanceId": "1937455889927225344",
+                            "workGroupId": "1937442495629627394",
+                            "workItemId": "520"
+                        }, //？之后的拼的参数
+                        "path": "/brain-instance/#/task-detail", //?之前的相对路径，如：/brain-build/#/app-execute/app-forms-detail；/comnova-pmp/#/main/project/exec/taskdetail/taskprops
+                        "protocol": "http", //请求方式：http/https
+                        "ip": "" //当前服务ip
+                    },
+                    "type": "redirect"
+                },
+                "buttonName": "处理",
+                "highLight": true
+            },
+            {
+                "action": {
+                    "redirect": {
+                        "ifToken": true, //需要带C大脑token时传true
+                        "params": {
+                            "instanceId": "1937455889927225344",
+                            "workGroupId": "1937442495629627394",
+                            "workItemId": "520"
+                        }, //？之后的拼的参数
+                        "path": "/brain-instance/#/task-detail", //?之前的相对路径，如：/brain-build/#/app-execute/app-forms-detail；/comnova-pmp/#/main/project/exec/taskdetail/taskprops
+                        "protocol": "http", //请求方式：http/https
+                        "ip": "" //当前服务ip
+                    },
+                    "type": "redirect"
+                },
+                "buttonName": "查看",
+                "highLight": true
+            }
+        ], //排序按当前列表顺序排列，显隐问题不再由个人指挥中心控制
+        "innerNet": [
+            {
+                "action": {
+                    "redirect": {
+                        "ifToken": true, //需要带C大脑token时传true
+                        "params": {
+                            "instanceId": "1937455889927225344",
+                            "workGroupId": "1937442495629627394",
+                            "workItemId": "520"
+                        }, //？之后的拼的参数
+                        "path": "/brain-instance/#/task-detail", //?之前的相对路径，如：/brain-build/#/app-execute/app-forms-detail；/comnova-pmp/#/main/project/exec/taskdetail/taskprops
+                        "protocol": "http", //请求方式：http/https
+                        "ip": "" //用当前服务ip
+                    },
+                    "type": "redirect"
+                },
+                "buttonName": "处理",
+                "highLight": true
+            },
+            {
+                "action": {
+                    "redirect": {
+                        "ifToken": true, //需要带C大脑token时传true
+                        "params": {
+                            "instanceId": "1937455889927225344",
+                            "workGroupId": "1937442495629627394",
+                            "workItemId": "520"
+                        }, //？之后的拼的参数
+                        "path": "/brain-instance/#/task-detail", //?之前的相对路径，如：/brain-build/#/app-execute/app-forms-detail；/comnova-pmp/#/main/project/exec/taskdetail/taskprops
+                        "protocol": "http", //请求方式：http/https
+                        "ip": "" //用当前服务ip
+                    },
+                    "type": "redirect"
+                },
+                "buttonName": "查看",
+                "highLight": true
+            }
+        ] //排序按当前列表顺序排列，显隐问题不再由个人指挥中心控制
+    }, //按钮列表.
+    "exchangeInformation": {
+        "lessseeId": "",
+        "otherId": "",
+        "planId": "",
+        "applicationId"："",
+        "dataSource": ""
+    } //数据交换字段，自定义key-value
+}
