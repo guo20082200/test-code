@@ -1,4 +1,4 @@
-package com.goaerion.testcode.service.impl;
+package com.goaerion.testcode.http.service.impl;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -9,9 +9,9 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
-import com.goaerion.testcode.config.HttpClientInterceptor;
-import com.goaerion.testcode.config.HttpClientProvider;
-import com.goaerion.testcode.service.HttpService;
+import com.goaerion.testcode.http.config.HttpClientInterceptor;
+import com.goaerion.testcode.http.config.HttpClientProvider;
+import com.goaerion.testcode.http.service.HttpService;
 
 import lombok.extern.slf4j.Slf4j;
 

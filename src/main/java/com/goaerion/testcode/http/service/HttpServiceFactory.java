@@ -1,4 +1,4 @@
-package com.goaerion.testcode.service;
+package com.goaerion.testcode.http.service;
 
 import java.util.Map;
 

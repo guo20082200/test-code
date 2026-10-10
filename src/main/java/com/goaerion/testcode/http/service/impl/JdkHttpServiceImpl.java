@@ -1,4 +1,4 @@
-package com.goaerion.testcode.service.impl;
+package com.goaerion.testcode.http.service.impl;
 
 import java.io.IOException;
 import java.net.URI;
@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 
-import com.goaerion.testcode.config.HttpClientInterceptor;
-import com.goaerion.testcode.config.HttpClientProvider;
-import com.goaerion.testcode.service.HttpService;
+import com.goaerion.testcode.http.config.HttpClientInterceptor;
+import com.goaerion.testcode.http.config.HttpClientProvider;
+import com.goaerion.testcode.http.service.HttpService;
 
 import lombok.extern.slf4j.Slf4j;
 import tools.jackson.databind.ObjectMapper;

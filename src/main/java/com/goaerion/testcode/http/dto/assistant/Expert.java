@@ -1,4 +1,4 @@
-package com.goaerion.testcode.dto.assistant;
+package com.goaerion.testcode.http.dto.assistant;
 
 /**
  * 专家信息（手写建造者模式）

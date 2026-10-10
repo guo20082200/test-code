@@ -1,4 +1,4 @@
-package com.goaerion.testcode.dto.centertask;
+package com.goaerion.testcode.http.dto.centertask;
 
 /**
  * 任务中心新增任务响应体（对应 doc/任务中心新增响应体.json）

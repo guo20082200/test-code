@@ -1,4 +1,4 @@
-package com.goaerion.testcode.config;
+package com.goaerion.testcode.http.config;
 
 import java.net.http.HttpClient;
 import java.security.SecureRandom;

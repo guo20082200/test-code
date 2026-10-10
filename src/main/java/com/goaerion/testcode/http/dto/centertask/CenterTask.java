@@ -1,4 +1,4 @@
-package com.goaerion.testcode.dto.centertask;
+package com.goaerion.testcode.http.dto.centertask;
 
 import java.util.List;
 import java.util.Map;

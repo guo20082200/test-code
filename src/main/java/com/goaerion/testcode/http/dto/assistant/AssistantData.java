@@ -1,4 +1,4 @@
-package com.goaerion.testcode.dto.assistant;
+package com.goaerion.testcode.http.dto.assistant;
 
 /**
  * 智能助手响应数据
