@@ -1,0 +1,6 @@
+assistant:
+  send-url: http://192.168.6.114/cbrain-gateway/comac-ai/comacai/assistant/sendToAssistant
+
+# 任务中心新增任务接口地址
+center-task:
+  send-url: http://192.168.6.20/cbrain-gateway/cbrain-task-server/cbrain-task/task/save

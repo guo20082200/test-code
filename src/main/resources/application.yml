@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: test-code
+  # 引入 Twelve Data 独立配置文件（也可指定为 optional:classpath:application-twelvedata.yml 使文件缺失时不报错）
+  config:
+    import: classpath:application-twelvedata.yml
+  # PostgreSQL 数据源（生产环境请通过环境变量注入）
+  datasource:
+    url: jdbc:postgresql://${PG_HOST:localhost}:${PG_PORT:5432}/${PG_DB:quant}
+    username: ${PG_USER:postgres}
+    password: ${PG_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+# MyBatis-Plus 配置
+mybatis-plus:
+  configuration:
+    # 数据库下划线列名 ↔ Java 驼峰属性自动映射（td_bar.bar_time ↔ barTime）
+    map-underscore-to-camel-case: true
+    # 开发期打印 SQL，生产环境关闭
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    banner: false
+    db-config:
+      # 主键使用数据库自增（td_symbol.id BIGSERIAL）
+      id-type: auto
+  # Mapper XML 位置（暂无 XML，约定放这里）
+  mapper-locations: classpath*:mapper/**/*.xml
+
+# HttpService 实现选择，可选值（即 bean 名称）：
+# jdkHttpServiceImpl / restTemplateHttpServiceImpl / restClientHttpServiceImpl
+# 不配置时默认使用 restClientHttpServiceImpl（见 @Qualifier 中的占位符默认值）
+http:
+  service:
+    impl: restClientHttpServiceImpl
+  # https 自签名证书时置为 true 跳过证书校验（仅限内网/测试环境，正式环境必须为 false）
+  ssl:
+    trust-all: false
+  # HttpClient 超时分级配置（支持 10s / 500ms 等格式）
+  timeout:
+    # 连接超时：建立 TCP/TLS 连接的最长时间
+    connect: 10s
+    # 读超时：发出请求后等待响应数据的最长时间
+    read: 30s

@@ -1,0 +1,32 @@
+# Twelve Data 接口配置（由 application.yml 通过 spring.config.import 引入）
+twelvedata:
+  # 时间序列接口地址
+  send-url: https://api.twelvedata.com/time_series
+  # 交叉汇率时间序列接口地址
+  cross-send-url: https://api.twelvedata.com/time_series/cross
+  # 实时报价接口地址
+  quote-send-url: https://api.twelvedata.com/quote
+  # 最新价接口地址
+  price-send-url: https://api.twelvedata.com/price
+  # 资产目录接口地址
+  stocks-send-url: https://api.twelvedata.com/stocks
+  forex-pairs-send-url: https://api.twelvedata.com/forex_pairs
+  cryptocurrencies-send-url: https://api.twelvedata.com/cryptocurrencies
+  etfs-send-url: https://api.twelvedata.com/etfs
+  funds-send-url: https://api.twelvedata.com/funds
+  commodities-send-url: https://api.twelvedata.com/commodities
+  bonds-send-url: https://api.twelvedata.com/bonds
+  # 资产目录辅助接口地址（代码搜索/交叉上市/最早时间戳）
+  symbol-search-send-url: https://api.twelvedata.com/symbol_search
+  cross-listings-send-url: https://api.twelvedata.com/cross_listings
+  earliest-timestamp-send-url: https://api.twelvedata.com/earliest_timestamp
+  # 交易所与基础目录接口地址
+  exchanges-send-url: https://api.twelvedata.com/exchanges
+  exchange-schedule-send-url: https://api.twelvedata.com/exchange_schedule
+  cryptocurrency-exchanges-send-url: https://api.twelvedata.com/cryptocurrency_exchanges
+  market-state-send-url: https://api.twelvedata.com/market_state
+  countries-send-url: https://api.twelvedata.com/countries
+  instrument-type-send-url: https://api.twelvedata.com/instrument_type
+  technical-indicators-send-url: https://api.twelvedata.com/technical_indicators
+  # API key（建议迁移为环境变量 ${TWELVEDATA_APIKEY}）
+  apikey: ${TWELVEDATA_APIKEY:7eccf8efb5cf4a2397282c118df0306b}
