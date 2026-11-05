@@ -39,6 +39,36 @@ public class HelloController {
         @Value("${center-task.send-url}")
         private String centerTaskSendUrl;
 
+        /**
+         * Twelve Data 时间序列接口地址（见 application.properties 的 twelvedata.send-url）
+         */
+        @Value("${twelvedata.send-url}")
+        private String twelvedataSendUrl;
+
+        /**
+         * Twelve Data 交叉汇率时间序列接口地址（见 application.properties 的 twelvedata.cross-send-url）
+         */
+        @Value("${twelvedata.cross-send-url}")
+        private String twelvedataCrossSendUrl;
+
+        /**
+         * Twelve Data 实时报价接口地址（见 application.properties 的 twelvedata.quote-send-url）
+         */
+        @Value("${twelvedata.quote-send-url}")
+        private String twelvedataQuoteSendUrl;
+
+        /**
+         * Twelve Data 最新价接口地址（见 application.properties 的 twelvedata.price-send-url）
+         */
+        @Value("${twelvedata.price-send-url}")
+        private String twelvedataPriceSendUrl;
+
+        /**
+         * Twelve Data API key（见 application.properties 的 twelvedata.apikey）
+         */
+        @Value("${twelvedata.apikey}")
+        private String twelvedataApiKey;
+
         public HelloController(HttpServiceFactory httpServiceFactory, CenterTaskService centerTaskService) {
                 this.httpServiceFactory = httpServiceFactory;
                 this.centerTaskService = centerTaskService;
@@ -90,4 +120,5 @@ public class HelloController {
                 return httpServiceFactory.getHttpService()
                                 .post(centerTaskSendUrl, body, headers, CenterTaskResponse.class);
         }
+
 }

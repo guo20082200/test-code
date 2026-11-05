@@ -1,0 +1,101 @@
+# Cryptocurrency pairs
+
+The cryptocurrencies endpoint provides a daily updated list of all available cryptos. It returns an array containing detailed information about each cryptocurrency, including its symbol, name, and other relevant identifiers. This endpoint is useful for retrieving a comprehensive catalog of cryptocurrencies for applications that require up-to-date market listings or need to display available crypto assets to users.
+
+**API credits cost:** `1` per request
+
+## Parameters
+
+- `symbol` (string, optional)
+  The ticker symbol of an instrument for which data is requested
+  Example value: `BTC/USD`
+
+
+- `exchange` (string, optional)
+  Filter by exchange name. E.g. `Binance`, `Coinbase`, etc.
+  Example value: `Binance`
+
+
+- `currency_base` (string, optional)
+  Filter by currency base
+  Example value: `BTC`
+
+
+- `currency_quote` (string, optional)
+  Filter by currency quote
+  Example value: `USD`
+
+
+- `format` (string, optional)
+  The format of the response data
+  Available values: `JSON`, `CSV`
+  Default value: `JSON`
+
+
+- `delimiter` (string, optional)
+  The separator used in the CSV response data
+  Default value: `;`
+
+
+- `page` (integer, optional)
+  Page number of the results to fetch
+  Default value: `1`
+
+
+- `outputsize` (integer, optional)
+  Determines the number of data points returned in the output. If not specified, all available records are returned
+  Example value: `50`
+
+
+
+## Response
+
+- `count` (integer)
+  Count
+
+- `data` (array of object)
+  List of cryptocurrencies
+  - `symbol` (string)
+    Cryptocurrency pair codes with slash(/) delimiter
+  - `available_exchanges` (array of string)
+    List of exchanges where the cryptocurrency is available
+  - `currency_base` (string)
+    Base currency of the cryptocurrency pair
+  - `currency_quote` (string)
+    Quote currency of the cryptocurrency pair
+
+- `status` (string)
+  Response status
+
+
+## Example Request
+
+```bash
+curl "https://api.twelvedata.com/cryptocurrencies?apikey=demo"
+```
+
+## Example Response
+
+```json
+{
+    "count": 100,
+    "data": [
+        {
+            "symbol": "BTC/USD",
+            "available_exchanges": [
+                "ABCC",
+                "Allcoin",
+                "BTC-Alpha",
+                "BTCTurk",
+                "Bibox",
+                "n.exchange",
+                "p2pb2b",
+                "xBTCe"
+            ],
+            "currency_base": "Bitcoin",
+            "currency_quote": "US Dollar"
+        }
+    ],
+    "status": "ok"
+}
+```

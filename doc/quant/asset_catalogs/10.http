@@ -1,0 +1,83 @@
+# Earliest timestamp
+
+The earliest_timestamp endpoint provides the earliest available date and time for a specified financial instrument at a given data interval. This endpoint is useful for determining the starting point of historical data availability for various assets, such as stocks or currencies, allowing users to understand the time range covered by the data.
+
+**API credits cost:** `1` per request
+
+## Parameters
+
+- `symbol` (string, optional, see notes)
+  Symbol ticker of the instrument.
+  Example value: `AAPL`
+
+
+- `figi` (string, optional, see notes)
+  Filter by financial instrument global identifier (FIGI). This parameter is available on the Ultra plan (individual) and the Enterprise plan (business) and above.
+  Example value: `BBG000B9XRY4`
+
+
+- `isin` (string, optional, see notes)
+  Look up an instrument by its International Securities Identification Number (ISIN). Available on all plans. Returning ISIN values in responses requires the ISIN Data add-on.
+  Example value: `US0378331005`
+
+
+- `cusip` (string, optional, see notes)
+  Look up an instrument by its Committee on Uniform Securities Identification Procedures (CUSIP) number. Available on all plans. Returning CUSIP values in responses requires the CUSIP Data add-on.
+  Example value: `594918104`
+
+
+- `interval` (string, required)
+  Interval between two consecutive points in time series.
+  Example value: `1day`
+  Available values: `1min`, `5min`, `15min`, `30min`, `45min`, `1h`, `2h`, `4h`, `8h`, `1day`, `1week`, `1month`
+
+
+- `exchange` (string, optional)
+  Exchange where instrument is traded.
+  Example value: `Nasdaq`
+
+
+- `mic_code` (string, optional)
+  Market Identifier Code (MIC) under ISO 10383 standard.
+  Example value: `XNAS`
+
+
+- `timezone` (string, optional)
+  Timezone at which output datetime will be displayed. Supports:
+
+1. Exchange for local exchange time
+2. UTC for datetime at universal UTC standard
+3. Timezone name according to the IANA Time Zone Database. E.g. America/New_York, Asia/Singapore. Full list of timezones can be found here.
+
+Interval Limitation: The timezone parameter is only applicable for intraday intervals (less than 1 day). For intervals of 1day, 1week, or 1month, the timezone parameter is ignored, and data is strictly returned in the Exchange local time.
+Take note that the IANA Timezone name is case-sensitive
+  Default value: `Exchange`
+
+
+**Notes:**
+
+ - At least one of the following parameters is required: `symbol`, `figi`, `isin`, `cusip`.
+
+## Response
+
+- `` (object)
+  - `datetime` (string)
+    Earliest datetime, the format depends on interval
+  - `unix_time` (integer)
+    Datetime converted to UNIX timestamp
+
+
+## Example Request
+
+```bash
+curl "https://api.twelvedata.com/earliest_timestamp?symbol=AAPL&interval=1day&apikey=demo"
+```
+
+## Example Response
+
+```json
+{
+    "datetime": "1980-12-12",
+    "unix_time": 345479400
+}
+```

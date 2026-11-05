@@ -1,0 +1,118 @@
+# Technical indicators
+
+The technical indicators endpoint provides a comprehensive list of available technical indicators, each represented as an object. This endpoint is useful for developers looking to integrate a variety of technical analysis tools into their applications, allowing for streamlined access to indicator data without needing to manually configure each one.
+
+**API credits cost:** `1` per request
+
+## Parameters
+
+No parameters are required.
+
+## Response
+
+- `data` (map (key: string, value: object))
+  Map of technical indicators available at Twelve Data API
+  - `enable` (boolean)
+    If the indicator is tested, approved and is recommended for use returns true, otherwise returns false
+  - `full_name` (string)
+    Full indicator name
+  - `description` (string)
+    Brief description of the indicator
+  - `type` (string)
+    Group to which indicator belongs to
+  - `overlay` (boolean)
+    If indicator should be plotted over price bars returns true, otherwise returns false
+  - `output_values` (object)
+    An array of output values
+    - `parameter_name` (object)
+      Output parameter name. Example values: ad, add, adxr, aroonosc,  macd, macd_signal, macd_hist, etc
+      - `default_color` (string)
+        Suggested color for displaying returns hex color code
+      - `display` (string)
+        How output value should be rendered
+      - `min_range` (integer)
+        If output value has minimum bound
+      - `max_range` (integer)
+        If output value has maximum bound
+  - `parameters` (object)
+    An array of input parameters for the indicator
+    - `parameter_name` (object)
+      Input parameter name. Example values: series_type, fast_period, slow_period, time_period, signal_period
+      - `default` (integer)
+        Specifies parameter value set by default
+      - `max_range` (integer)
+        If the parameter has upper bound in order to ensure correct calculation
+      - `min_range` (integer)
+        If the parameter has lower bound in order to ensure correct calculation
+      - `range` (array of string)
+        An array of available parameter values
+      - `type` (string)
+        Type of parameter might be string, int, float or array
+  - `tinting` (object)
+    An array of tinting values used for proper indicator coloring
+    - `display` (string)
+      How the tinting should be rendered
+    - `color` (string)
+      Hex color code for the tinting
+    - `transparency` (number)
+      Transparency level, float value from 0 to 1
+    - `lower_bound` (string)
+      Lower bound of tinting, can be a number or a return parameter name
+    - `upper_bound` (string)
+      Upper bound of tinting, can be a number or a return parameter name
+
+- `status` (string)
+  Response status
+
+
+## Example Request
+
+```bash
+curl "https://api.twelvedata.com/technical_indicators?apikey=demo"
+```
+
+## Example Response
+
+```json
+{
+    "data": {
+        "macd": {
+            "enable": true,
+            "full_name": "Moving Average Convergence Divergence",
+            "description": "Moving Average Convergence Divergence(MACD) is ...",
+            "type": "Momentum Indicators",
+            "overlay": false,
+            "output_values": {
+                "parameter_name": {
+                    "default_color": "#FF0000",
+                    "display": "line",
+                    "min_range": 0,
+                    "max_range": 5
+                }
+            },
+            "parameters": {
+                "parameter_name": {
+                    "default": 12,
+                    "max_range": 1,
+                    "min_range": 1,
+                    "range": [
+                        "open",
+                        "high",
+                        "low",
+                        "close"
+                    ],
+                    "type": "int"
+                }
+            },
+            "tinting": {
+                "display": "fill",
+                "color": "#FF0000",
+                "transparency": 0.5,
+                "lower_bound": "0",
+                "upper_bound": "macd"
+            }
+        }
+    },
+    "status": "ok"
+}
+```

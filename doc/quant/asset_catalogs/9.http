@@ -1,0 +1,90 @@
+# Cross listings
+
+The cross_listings endpoint provides a daily updated list of cross-listed symbols for a specified financial instrument. Cross-listed symbols represent the same security available on multiple exchanges. This endpoint is useful for identifying all the exchanges where a particular security is traded, allowing users to access comprehensive trading information across different markets.
+
+**API credits cost:** `40` per request
+
+> **Note:** This API endpoint is available on the <a href="https://twelvedata.com/pricing">Grow</a> plan (individual) and the <a href="https://twelvedata.com/pricing-business">Venture</a> plan (business) and above.
+
+## Parameters
+
+- `symbol` (string, required)
+  The ticker symbol of an instrument for which data is requested
+  Example value: `AAPL`
+
+
+- `exchange` (string, optional)
+  Exchange where instrument is traded
+  Example value: `NASDAQ`
+
+
+- `mic_code` (string, optional)
+  Market identifier code (MIC) under ISO 10383 standard
+  Example value: `XNGS`
+
+
+- `country` (string, optional)
+  Country to which stock exchange belongs to
+  Example value: `United States`
+
+
+
+## Response
+
+- `result` (object)
+  Represents the result of cross listings
+  - `count` (integer)
+    Number of cross listings found
+  - `list` (array of object)
+    List of cross listings
+    - `symbol` (string)
+      Ticker symbol of instrument
+    - `name` (string)
+      Name of symbol
+    - `exchange` (string)
+      Exchange where instrument is traded
+    - `mic_code` (string)
+      Market identifier code (MIC) under ISO 10383 standard
+
+
+## Example Request
+
+```bash
+curl "https://api.twelvedata.com/cross_listings?symbol=AAPL&apikey=demo"
+```
+
+## Example Response
+
+```json
+{
+    "result": {
+        "count": 4,
+        "list": [
+            {
+                "exchange": "NASDAQ",
+                "mic_code": "XNGS",
+                "name": "NVIDIA Corporation",
+                "symbol": "NVDA"
+            },
+            {
+                "exchange": "VSE",
+                "mic_code": "XWBO",
+                "name": "NVIDIA Corporation",
+                "symbol": "NVDA"
+            },
+            {
+                "exchange": "BVS",
+                "mic_code": "XSGO",
+                "name": "NVIDIA Corporation",
+                "symbol": "NVDACL"
+            },
+            {
+                "exchange": "BVS",
+                "mic_code": "XSGO",
+                "name": "NVIDIA Corporation",
+                "symbol": "NVDA"
+            }
+        ]
+    }
+}
+```

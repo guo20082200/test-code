@@ -1,0 +1,58 @@
+# Cryptocurrency exchanges
+
+The cryptocurrency exchanges endpoint provides a daily updated list of available cryptocurrency exchanges. It returns an array containing details about each exchange, such as exchange names and identifiers.
+
+**API credits cost:** `1` per request
+
+## Parameters
+
+- `format` (string, optional)
+  The format of the response data
+  Available values: `JSON`, `CSV`
+  Default value: `JSON`
+
+
+- `delimiter` (string, optional)
+  Specify the delimiter used when downloading the CSV file
+  Default value: `;`
+
+
+
+## Response
+
+- `data` (array of object)
+  List of cryptocurrency exchanges
+  - `name` (string)
+    Name of cryptocurrency exchange
+
+- `status` (string)
+  Response status
+
+
+## Example Request
+
+```bash
+curl "https://api.twelvedata.com/cryptocurrency_exchanges?apikey=demo"
+```
+
+## Example Response
+
+```json
+{
+    "data": [
+        {
+            "name": "Binance"
+        },
+        {
+            "name": "Coinbase Pro"
+        },
+        {
+            "name": "Kraken"
+        },
+        {
+            "name": "OKX"
+        }
+    ],
+    "status": "ok"
+}
+```

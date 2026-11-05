@@ -1,0 +1,153 @@
+# ETFs
+
+The ETFs endpoint provides a daily updated list of all available Exchange-Traded Funds. It returns an array containing detailed information about each ETF, including its symbol, name, and other relevant identifiers. This endpoint is useful for retrieving a comprehensive catalog of ETFs for portfolio management, investment tracking, or financial analysis.
+
+**API credits cost:** `1` per request
+
+## Parameters
+
+- `symbol` (string, optional)
+  The ticker symbol of an instrument for which data is requested
+  Example value: `SPY`
+
+
+- `figi` (string, optional)
+  Filter by financial instrument global identifier (FIGI). This parameter is available on the Ultra plan (individual) and the Enterprise plan (business) and above.
+  Example value: `BBG000BDTF76`
+
+
+- `isin` (string, optional)
+  Look up an instrument by its International Securities Identification Number (ISIN). Available on all plans. Returning ISIN values in responses requires the ISIN Data add-on.
+  Example value: `US0378331005`
+
+
+- `cusip` (string, optional)
+  Look up an instrument by its Committee on Uniform Securities Identification Procedures (CUSIP) number. Available on all plans. Returning CUSIP values in responses requires the CUSIP Data add-on.
+  Example value: `594918104`
+
+
+- `cik` (string, optional)
+  The CIK of an instrument for which data is requested
+  Example value: `95953`
+
+
+- `exchange` (string, optional)
+  Filter by exchange name
+  Example value: `NYSE`
+
+
+- `mic_code` (string, optional)
+  Filter by market identifier code (MIC) under ISO 10383 standard
+  Example value: `XNYS`
+
+
+- `country` (string, optional)
+  Filter by country name or alpha code, e.g., `United States` or `US`
+  Example value: `United States`
+
+
+- `format` (string, optional)
+  The format of the response data
+  Available values: `JSON`, `CSV`
+  Default value: `JSON`
+
+
+- `delimiter` (string, optional)
+  The separator used in the CSV response data
+  Default value: `;`
+
+
+- `show_plan` (boolean, optional)
+  Adds info on which plan symbol is available
+  Default value: `false`
+
+
+- `include_delisted` (boolean, optional)
+  Include delisted identifiers
+  Default value: `false`
+
+
+- `page` (integer, optional)
+  Page number of the results to fetch
+  Default value: `1`
+
+
+- `outputsize` (integer, optional)
+  Determines the number of data points returned in the output. If not specified, all available records are returned
+  Example value: `50`
+
+
+
+## Response
+
+- `count` (integer)
+  Count
+
+- `data` (array of object)
+  List of ETFs
+  - `symbol` (string)
+    Instrument symbol (ticker)
+  - `name` (string)
+    Full name of the ETF
+  - `currency` (string)
+    Currency of the ETF according to the ISO 4217 standard
+  - `exchange` (string)
+    Exchange where the ETF is traded
+  - `mic_code` (string)
+    Market identifier code (MIC) under ISO 10383 standard
+  - `country` (string)
+    Country where the ETF is located
+  - `figi_code` (string)
+    Financial instrument global identifier (FIGI)
+  - `cfi_code` (string)
+    Classification of Financial Instruments (CFI)
+  - `isin` (string)
+    International securities identification number (ISIN)
+  - `cusip` (string)
+    A unique nine-character alphanumeric code used to identify financial securities, ensuring accurate data retrieval for the specified asset
+  - `access` (object)
+    Info on which plan symbol is available (displayed then `show_plan` is `true`)
+    - `global` (string)
+      Level of access to the symbol
+    - `plan` (string)
+      The individual plan name for the symbol
+    - `plan_business` (string)
+      The business plan name for the symbol
+
+- `status` (string)
+  Response status
+
+
+## Example Request
+
+```bash
+curl "https://api.twelvedata.com/etfs?apikey=demo"
+```
+
+## Example Response
+
+```json
+{
+    "count": 100,
+    "data": [
+        {
+            "symbol": "SPY",
+            "name": "SPDR S&P 500 ETF Trust",
+            "currency": "USD",
+            "exchange": "NYSE",
+            "mic_code": "ARCX",
+            "country": "United States",
+            "figi_code": "BBG000BDTF76",
+            "cfi_code": "CECILU",
+            "isin": "US78462F1030",
+            "cusip": "037833100",
+            "access": {
+                "global": "Basic",
+                "plan": "Basic",
+                "plan_business": "Basic"
+            }
+        }
+    ],
+    "status": "ok"
+}
+```

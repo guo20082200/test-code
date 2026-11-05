@@ -1,0 +1,53 @@
+# Countries
+
+The countries endpoint provides a comprehensive list of countries, including their ISO codes, official names, capitals, and currencies. This data is essential for applications requiring accurate country information for tasks such as localization, currency conversion, or geographic analysis.
+
+**API credits cost:** `1` per request
+
+## Parameters
+
+No parameters are required.
+
+## Response
+
+- `data` (array of object)
+  List of countries with their ISO codes, names, capital, and currency
+  - `iso2` (string)
+    Two-letter country code defined in ISO 3166
+  - `iso3` (string)
+    Three-letter country code defined in ISO 3166
+  - `numeric` (string)
+    Numeric country code defined in ISO 3166
+  - `name` (string)
+    The full name of country
+  - `official_name` (string)
+    Official name of country
+  - `capital` (string)
+    Capital of country
+  - `currency` (string)
+    Currency of country
+
+
+## Example Request
+
+```bash
+curl "https://api.twelvedata.com/countries?apikey=demo"
+```
+
+## Example Response
+
+```json
+{
+    "data": [
+        {
+            "iso2": "US",
+            "iso3": "USA",
+            "numeric": "840",
+            "name": "United States",
+            "official_name": "United States of America",
+            "capital": "Washington D.C.",
+            "currency": "USD"
+        }
+    ]
+}
+```

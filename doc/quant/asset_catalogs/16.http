@@ -1,0 +1,60 @@
+# Instrument type
+
+The instrument type endpoint lists all available financial instrument types, such as stocks, ETFs, and cryptos. This information is essential for users to identify and categorize different financial instruments when accessing or analyzing market data.
+
+**API credits cost:** `1` per request
+
+## Parameters
+
+No parameters are required.
+
+## Response
+
+- `result` (array of string)
+  List of instrument types available at Twelve Data API.
+
+- `status` (string)
+  Status of the response
+
+
+## Example Request
+
+```bash
+curl "https://api.twelvedata.com/instrument_type?apikey=demo"
+```
+
+## Example Response
+
+```json
+{
+    "result": [
+        "Agricultural Product",
+        "American Depositary Receipt",
+        "Bond",
+        "Bond Fund",
+        "Closed-end Fund",
+        "Common Stock",
+        "Depositary Receipt",
+        "Digital Currency",
+        "Energy Resource",
+        "ETF",
+        "Exchange-Traded Note",
+        "Global Depositary Receipt",
+        "Index",
+        "Industrial Metal",
+        "Limited Partnership",
+        "Livestock",
+        "Mutual Fund",
+        "Physical Currency",
+        "Precious Metal",
+        "Preferred Stock",
+        "REIT",
+        "Right",
+        "Structured Product",
+        "Trust",
+        "Unit",
+        "Warrant"
+    ],
+    "status": "ok"
+}
+```

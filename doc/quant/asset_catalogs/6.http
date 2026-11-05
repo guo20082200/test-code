@@ -1,0 +1,94 @@
+# Commodities
+
+The commodities endpoint provides a daily updated list of available commodity pairs, across precious metals, livestock, softs, grains, etc.
+
+**API credits cost:** `1` per request
+
+## Parameters
+
+- `symbol` (string, optional)
+  The ticker symbol of an instrument for which data is requested
+  Example value: `XAU/USD`
+
+
+- `category` (string, optional)
+  Filter by category of commodity
+  Example value: `Precious Metal`
+
+
+- `format` (string, optional)
+  The format of the response data
+  Available values: `JSON`, `CSV`
+  Default value: `JSON`
+
+
+- `delimiter` (string, optional)
+  The separator used in the CSV response data
+  Default value: `;`
+
+
+- `page` (integer, optional)
+  Page number of the results to fetch
+  Default value: `1`
+
+
+- `outputsize` (integer, optional)
+  Determines the number of data points returned in the output. If not specified, all available records are returned
+  Example value: `50`
+
+
+
+## Response
+
+- `count` (integer)
+  Count
+
+- `data` (array of object)
+  List of commodities
+  - `symbol` (string)
+    Currency pair according to ISO 4217 standard codes with slash(/) delimiter
+  - `name` (string)
+    Full name of the instrument
+  - `category` (string)
+    Category of commodity
+  - `description` (string)
+    Short description of the commodity
+
+- `status` (string)
+  Response status
+
+
+## Example Request
+
+```bash
+curl "https://api.twelvedata.com/commodities?apikey=demo"
+```
+
+## Example Response
+
+```json
+{
+    "count": 100,
+    "data": [
+        {
+            "category": "Energy Resource",
+            "description": "Spot price per barrel of West Texas Intermediate crude oil.",
+            "name": "Crude Oil WTI Spot",
+            "symbol": "WTI/USD"
+        },
+        {
+            "category": "Industrial Metal",
+            "description": "Spot price per pound of copper.",
+            "name": "Copper Spot",
+            "symbol": "HG1"
+        },
+        {
+            "category": "Precious Metal",
+            "description": "Spot price per troy ounce of gold.",
+            "name": "Gold Spot",
+            "symbol": "XAU/USD"
+        }
+    ],
+    "status": "ok"
+}
+```

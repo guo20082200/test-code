@@ -1,0 +1,94 @@
+# Symbol search (High demand)
+
+The symbol search endpoint allows users to find financial instruments by name or symbol. It returns a list of matching symbols, ordered by relevance, with the most relevant instrument first. This is useful for quickly locating specific stocks, ETFs, or other financial instruments when only partial information is available.
+
+**API credits cost:** `1` per request
+
+## Parameters
+
+- `symbol` (string, required)
+  Symbol to search. Supports:
+
+Ticker symbol of instrument.
+Look up an instrument by its International Securities Identification Number (ISIN). Available on all plans. Returning ISIN values in responses requires the ISIN Data add-on.
+The FIGI (Financial Instrument Global Identifier) parameter is available on the Ultra plan (individual) and Enterprise plan (business) and above.
+Composite FIGI parameter is available on the Ultra plan (individual) and Enterprise plan (business) and above.
+Share Class FIGI parameter is available on the Ultra plan (individual) and Enterprise plan (business) and above.
+
+  Example value: `AAPL`
+
+
+- `outputsize` (integer, optional)
+  Number of matches in response. Max 120
+  Default value: `30`
+
+
+- `show_plan` (boolean, optional)
+  Adds info on which plan symbol is available.
+  Default value: `false`
+
+
+
+## Response
+
+- `data` (array of object)
+  List of symbols matching the search criteria
+  - `symbol` (string)
+    Ticker symbol of instrument
+  - `instrument_name` (string)
+    Name of exchange
+  - `exchange` (string)
+    Exchange where instrument is traded
+  - `mic_code` (string)
+    Market identifier code (MIC) under ISO 10383 standard
+  - `exchange_timezone` (string)
+    Time zone where exchange is located
+  - `instrument_type` (string)
+    Type of instrument
+  - `country` (string)
+    Country to which stock exchange belongs to
+  - `currency` (string)
+    Currency in which the instrument is traded
+  - `access` (object)
+    Info on which plan symbol is available (displayed then `show_plan` is `true`)
+    - `global` (string)
+      Level of access to the symbol
+    - `plan` (string)
+      The individual plan name for the symbol
+    - `plan_business` (string)
+      The business plan name for the symbol
+
+- `status` (string)
+  Status of the response
+
+
+## Example Request
+
+```bash
+curl "https://api.twelvedata.com/symbol_search?symbol=AAPL&apikey=demo"
+```
+
+## Example Response
+
+```json
+{
+    "data": [
+        {
+            "symbol": "AA",
+            "instrument_name": "Alcoa Corp",
+            "exchange": "NYSE",
+            "mic_code": "XNYS",
+            "exchange_timezone": "America/New_York",
+            "instrument_type": "Common Stock",
+            "country": "United States",
+            "currency": "USD",
+            "access": {
+                "global": "Basic",
+                "plan": "Basic",
+                "plan_business": "Basic"
+            }
+        }
+    ],
+    "status": "ok"
+}
+```

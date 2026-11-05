@@ -1,0 +1,87 @@
+# Forex pairs
+
+The forex pairs endpoint provides a comprehensive list of all available foreign exchange currency pairs. It returns an array of forex pairs, which is updated daily.
+
+**API credits cost:** `1` per request
+
+## Parameters
+
+- `symbol` (string, optional)
+  The ticker symbol of an instrument for which data is requested
+  Example value: `EUR/USD`
+
+
+- `currency_base` (string, optional)
+  Filter by currency base
+  Example value: `EUR`
+
+
+- `currency_quote` (string, optional)
+  Filter by currency quote
+  Example value: `USD`
+
+
+- `format` (string, optional)
+  The format of the response data
+  Available values: `JSON`, `CSV`
+  Default value: `JSON`
+
+
+- `delimiter` (string, optional)
+  The separator used in the CSV response data
+  Default value: `;`
+
+
+- `page` (integer, optional)
+  Page number of the results to fetch
+  Default value: `1`
+
+
+- `outputsize` (integer, optional)
+  Determines the number of data points returned in the output. If not specified, all available records are returned
+  Example value: `50`
+
+
+
+## Response
+
+- `count` (integer)
+  Count
+
+- `data` (array of object)
+  List of forex pairs
+  - `symbol` (string)
+    Currency pair according to ISO 4217 standard codes with slash(/) delimiter
+  - `currency_group` (string)
+    Group to which currency pair belongs to, could be: Major, Minor, Exotic and Exotic-Cross
+  - `currency_base` (string)
+    Base currency name according to ISO 4217 standard
+  - `currency_quote` (string)
+    Quote currency name according to ISO 4217 standard
+
+- `status` (string)
+  Response status
+
+
+## Example Request
+
+```bash
+curl "https://api.twelvedata.com/forex_pairs?apikey=demo"
+```
+
+## Example Response
+
+```json
+{
+    "count": 100,
+    "data": [
+        {
+            "symbol": "EUR/USD",
+            "currency_group": "Major",
+            "currency_base": "EUR",
+            "currency_quote": "USD"
+        }
+    ],
+    "status": "ok"
+}
+```

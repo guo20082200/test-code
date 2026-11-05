@@ -1,0 +1,121 @@
+# Fixed income
+
+The fixed income endpoint provides a daily updated list of available bonds. It returns an array containing detailed information about each bond, including identifiers, names, and other relevant attributes.
+
+**API credits cost:** `1` per request
+
+## Parameters
+
+- `symbol` (string, optional)
+  The ticker symbol of an instrument for which data is requested
+  Example value: `US2Y`
+
+
+- `exchange` (string, optional)
+  Filter by exchange name
+  Example value: `NYSE`
+
+
+- `mic_code` (string, optional)
+  Filter by market identifier code (MIC) under ISO 10383 standard
+  Example value: `XNYS`
+
+
+- `country` (string, optional)
+  Filter by country name or alpha code, e.g., `United States` or `US`
+  Example value: `United States`
+
+
+- `format` (string, optional)
+  The format of the response data
+  Available values: `JSON`, `CSV`
+  Default value: `JSON`
+
+
+- `delimiter` (string, optional)
+  The separator used in the CSV response data
+  Default value: `;`
+
+
+- `show_plan` (boolean, optional)
+  Adds info on which plan symbol is available
+  Default value: `false`
+
+
+- `page` (integer, optional)
+  Page number of the results to fetch
+  Default value: `1`
+
+
+- `outputsize` (integer, optional)
+  Determines the number of data points returned in the output. If not specified, all available records are returned
+  Example value: `50`
+
+
+
+## Response
+
+- `result` (object)
+  - `count` (integer)
+    Total number of matching instruments
+  - `list` (array of object)
+    List of bonds
+    - `symbol` (string)
+      Bond symbol
+    - `name` (string)
+      Full name of the bond
+    - `country` (string)
+      Country where the bond is located
+    - `currency` (string)
+      Currency of the bond according to the ISO 4217 standard
+    - `exchange` (string)
+      Exchange where the bond is traded
+    - `mic_code` (string)
+      Market identifier code (MIC) under ISO 10383 standard
+    - `type` (string)
+      Type of the bond
+    - `access` (object)
+      Info on which plan symbol is available (displayed then `show_plan` is `true`)
+      - `global` (string)
+        Level of access to the symbol
+      - `plan` (string)
+        The individual plan name for the symbol
+      - `plan_business` (string)
+        The business plan name for the symbol
+
+- `status` (string)
+  Response status
+
+
+## Example Request
+
+```bash
+curl "https://api.twelvedata.com/bonds?apikey=demo"
+```
+
+## Example Response
+
+```json
+{
+    "result": {
+        "count": 6,
+        "list": [
+            {
+                "symbol": "US2Y",
+                "name": "US Treasury Yield 2 Years",
+                "country": "United States",
+                "currency": "USD",
+                "exchange": "NYSE",
+                "mic_code": "XNYS",
+                "type": "Bond",
+                "access": {
+                    "global": "Basic",
+                    "plan": "Basic",
+                    "plan_business": "Basic"
+                }
+            }
+        ]
+    },
+    "status": "ok"
+}
+```
