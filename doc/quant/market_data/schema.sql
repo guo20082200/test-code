@@ -9,7 +9,7 @@
 -- 1. 标的池：要跟踪哪些 symbol（同步范围的唯一来源）
 -- ---------------------------------------------------------------------
 CREATE TABLE td_symbol (
-    id                BIGSERIAL PRIMARY KEY,
+    id                int8 PRIMARY KEY,
     symbol            VARCHAR(32)  NOT NULL,                 -- 标的代码：AAPL / EUR/USD / ETH/BTC；优先股用点号（BRK.A）
     exchange          VARCHAR(64),                           -- 交易所名称（如 NASDAQ），外汇/加密货币可空
     mic_code          VARCHAR(8),                            -- ISO 10383 市场标识码（如 XNAS）
@@ -41,7 +41,7 @@ COMMENT ON COLUMN td_symbol.enabled           IS '是否参与同步';
 --    symbol 直接存代码（不引用 td_symbol.id）：入库路径零 JOIN；标的存在性由 td_symbol 管辖
 -- ---------------------------------------------------------------------
 CREATE TABLE td_bar (
-    id            BIGSERIAL    PRIMARY KEY,          -- 代理主键：兼容 MyBatis-Plus BaseMapper 单一 @TableId
+    id            int8    PRIMARY KEY,          -- 代理主键：兼容 MyBatis-Plus BaseMapper 单一 @TableId
     symbol        VARCHAR(32)  NOT NULL,             -- 标的代码，与 td_symbol.symbol 对应（逻辑外键，不建 FK 约束）
     interval      VARCHAR(8)   NOT NULL,   -- 1min/5min/15min/30min/45min/1h/2h/4h/8h/1day/1week/1month
     bar_time      TIMESTAMPTZ  NOT NULL,   -- K 线开始时间，统一 UTC
@@ -91,7 +91,7 @@ COMMENT ON COLUMN td_sync_cursor.last_bar_time IS '已同步到的最后一条 K
 -- 4. 拉取日志：每次任务的结果与 credits 消耗
 -- ---------------------------------------------------------------------
 CREATE TABLE td_fetch_log (
-    id           BIGSERIAL PRIMARY KEY,
+    id           int8 PRIMARY KEY,
     task_type    VARCHAR(32)  NOT NULL,    -- time_series_backfill / time_series_increment / quote / api_usage
     symbol       VARCHAR(32),              -- 记录便于排查；批量任务可空
     interval     VARCHAR(8),

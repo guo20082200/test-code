@@ -1,6 +1,4 @@
-# Twelve Data stocks | exchange=NASDAQ
-# listings=4520 | mic: XNGS=1499 XNCM=1722 XNMS=1261 XNAS=38 | fetched=2026-11-05 | credits=1
-# isin/cusip 需附加包，本响应为 request_access_via_add_ons
+
 symbol	name	currency	exchange	mic_code	country	type	figi_code
 AACG	ATA Creativity Global	USD	NASDAQ	XNCM	United States	American Depositary Receipt	BBG000V2S786
 AACI	Armada Acquisition Corp. III Class A Ordinary Share	USD	NASDAQ	XNMS	United States	Common Stock	BBG020B9B3K4

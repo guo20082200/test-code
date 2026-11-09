@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goaerion.testcode.http.quant.storage.TdSyncCursorMapper">
+
+    <!-- 幂等写入游标：冲突键 (symbol, "interval")，
+         命中时推进 last_bar_time 并刷新 last_sync_at（断点续传：中断后从 last_bar_time 继续） -->
+    <insert id="upsertCursor">
+        INSERT INTO td_sync_cursor (symbol, "interval", last_bar_time, last_sync_at)
+        VALUES (#{symbol}, #{interval}, #{lastBarTime}, now())
+        ON CONFLICT (symbol, "interval") DO UPDATE SET
+            last_bar_time = EXCLUDED.last_bar_time,
+            last_sync_at  = now()
+    </insert>
+
+    <!-- 按复合主键查询游标，未同步过返回 NULL -->
+    <select id="selectBySymbolAndInterval" resultType="com.goaerion.testcode.http.quant.entity.TdSyncCursor">
+        SELECT symbol,
+               "interval",
+               last_bar_time,
+               last_sync_at
+        FROM td_sync_cursor
+        WHERE symbol = #{symbol}
+          AND "interval" = #{interval}
+    </select>
+
+</mapper>

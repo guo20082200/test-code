@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goaerion.testcode.http.quant.storage.TdBarMapper">
+
+    <!-- 批量幂等写入：INSERT ... ON CONFLICT (symbol, "interval", bar_time) DO UPDATE
+         复权修正/历史回补重复拉取时自动覆盖，updated_at 由数据库刷新。
+         id 为外部指定主键（列无默认值），由应用侧雪花生成后随行写入；
+         冲突时只更新行情列、保留首插 id -->
+    <insert id="batchUpsert">
+        INSERT INTO td_bar (id, symbol, "interval", bar_time,
+                            open, high, low, close, adj_close,
+                            volume, amount, currency)
+        VALUES
+        <foreach collection="list" item="bar" separator=",">
+            (#{bar.id}, #{bar.symbol}, #{bar.interval}, #{bar.barTime},
+             #{bar.open}, #{bar.high}, #{bar.low}, #{bar.close}, #{bar.adjClose},
+             #{bar.volume}, #{bar.amount}, #{bar.currency})
+        </foreach>
+        ON CONFLICT (symbol, "interval", bar_time) DO UPDATE SET
+            open       = EXCLUDED.open,
+            high       = EXCLUDED.high,
+            low        = EXCLUDED.low,
+            close      = EXCLUDED.close,
+            adj_close  = EXCLUDED.adj_close,
+            volume     = EXCLUDED.volume,
+            amount     = EXCLUDED.amount,
+            currency   = EXCLUDED.currency,
+            updated_at = now()
+    </insert>
+
+    <!-- 取最近 N 根 K 线：命中索引 idx_bar_symbol_time，外层按时间正序返回 -->
+    <select id="selectRecentBars" resultType="com.goaerion.testcode.http.quant.entity.TdBar">
+        SELECT *
+        FROM (
+                 SELECT id,
+                        symbol,
+                        "interval",
+                        bar_time,
+                        open,
+                        high,
+                        low,
+                        close,
+                        adj_close,
+                        volume,
+                        amount,
+                        currency,
+                        created_at,
+                        updated_at
+                 FROM td_bar
+                 WHERE symbol = #{symbol}
+                   AND "interval" = #{interval}
+                 ORDER BY bar_time DESC
+                 LIMIT #{limit}
+             ) t
+        ORDER BY t.bar_time ASC
+    </select>
+
+</mapper>

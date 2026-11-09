@@ -1,14 +1,17 @@
 spring:
   application:
     name: test-code
-  # 引入 Twelve Data 独立配置文件（也可指定为 optional:classpath:application-twelvedata.yml 使文件缺失时不报错）
+  # 引入独立配置文件：Twelve Data 接口地址 + 内网业务地址（assistant/center-task），
+  # 前缀加 optional: 使文件缺失时不报错
   config:
-    import: classpath:application-twelvedata.yml
+    import:
+      - classpath:application-twelvedata.yml
+      - optional:classpath:application-other.yml
   # PostgreSQL 数据源（生产环境请通过环境变量注入）
   datasource:
-    url: jdbc:postgresql://${PG_HOST:localhost}:${PG_PORT:5432}/${PG_DB:quant}
-    username: ${PG_USER:postgres}
-    password: ${PG_PASSWORD:postgres}
+    url: jdbc:postgresql://${PG_HOST:192.168.6.15}:${PG_PORT:5432}/${PG_DB:zishi_test}
+    username: ${PG_USER:comac}
+    password: ${PG_PASSWORD:Comac@2025}
     driver-class-name: org.postgresql.Driver
 
 # MyBatis-Plus 配置
@@ -21,7 +24,8 @@ mybatis-plus:
   global-config:
     banner: false
     db-config:
-      # 主键使用数据库自增（td_symbol.id BIGSERIAL）
+      # 默认主键策略：数据库自增；quant 各实体按“主键外部指定”约定，
+      # 在 @TableId(type = ASSIGN_ID) 注解级别覆盖（应用侧雪花生成）
       id-type: auto
   # Mapper XML 位置（暂无 XML，约定放这里）
   mapper-locations: classpath*:mapper/**/*.xml

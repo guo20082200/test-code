@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goaerion.testcode.http.quant.storage.TdStockCatalogMapper">
+
+    <!-- 批量幂等写入：INSERT ... ON CONFLICT (symbol, exchange, mic_code) DO UPDATE
+         重复抓取同一快照时自动合并，updated_at 由数据库刷新 -->
+    <insert id="batchUpsert">
+        INSERT INTO td_stock_catalog (id, symbol, name, currency, exchange, mic_code,
+                                      country, type, figi_code, fetched_at)
+        VALUES
+        <foreach collection="list" item="c" separator=",">
+            (#{c.id}, #{c.symbol}, #{c.name}, #{c.currency}, #{c.exchange}, #{c.micCode},
+             #{c.country}, #{c.type}, #{c.figiCode}, #{c.fetchedAt})
+        </foreach>
+        ON CONFLICT (symbol, exchange, mic_code) DO UPDATE SET
+            name       = EXCLUDED.name,
+            currency   = EXCLUDED.currency,
+            country    = EXCLUDED.country,
+            type       = EXCLUDED.type,
+            figi_code  = EXCLUDED.figi_code,
+            fetched_at = EXCLUDED.fetched_at,
+            updated_at = now()
+    </insert>
+
+</mapper>

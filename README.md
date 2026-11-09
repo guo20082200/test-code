@@ -1,164 +1,122 @@
-# test-code 工程说明文档
+# test-code
 
-## 1. 工程简介
+一个基于 **Spring Boot 4.1.1 / Java 17** 的实验性工程，主要包含三部分内容：
 
-test-code 是一个基于 **Spring Boot 4.0.8 + Java 17 + Maven** 的后端测试工程，核心目标是对 **HTTP 客户端调用能力** 进行统一封装与验证：
+1. **HTTP 客户端模块**：以"工厂 + 策略"模式封装 JDK HttpClient、RestTemplate、RestClient 三种实现，支持 TraceId 链路追踪、分级超时与 SSL 配置；
+2. **TwelveData 行情数据对接**：封装时间序列、实时报价、资产目录等 20+ REST 接口，并通过 MyBatis-Plus + PostgreSQL 落库；
+3. **Apache Commons Numbers 实验**：针对高精度算术、角度、精度等能力的单元测试验证。
 
-- 提供一套通用的 `HttpService` 接口，支持 GET / POST / PUT / DELETE 四种请求方式；
-- 提供三种 HTTP 客户端实现（JDK HttpClient / RestTemplate / RestClient），可通过配置随时切换；
-- 提供统一的请求拦截器机制（如链路追踪 ID 透传）、SSL 证书策略与超时分级配置；
-- 附带两个真实的业务联调示例：调用「C 大脑智能助手」和「任务中心新增任务」接口。
+## 技术栈
 
-## 2. 技术栈
-
-| 分类 | 技术 | 说明 |
+| 类别 | 选型 | 说明 |
 | --- | --- | --- |
-| 基础框架 | Spring Boot 4.0.8 | 父 POM：`spring-boot-starter-parent` |
-| JDK 版本 | Java 17 | `maven-compiler-plugin` 编译 |
-| Web | spring-boot-starter-webmvc | 提供 RestController 能力 |
-| HTTP 客户端 | spring-boot-starter-webclient | 提供 RestClient / WebClient 相关支持 |
-| JSON | Jackson 3（`tools.jackson.*`） | 请求/响应体序列化与反序列化 |
-| 简化工具 | Lombok | `@Slf4j`、`@Builder` 等，编译期注解处理 |
-| 构建工具 | Maven（含 `mvnw` Wrapper） | 无需本地安装 Maven 即可构建 |
+| 语言 / 运行时 | Java 17 | |
+| 核心框架 | Spring Boot 4.1.1 | spring-boot-starter-webmvc / webclient |
+| ORM | MyBatis-Plus 3.5.16 | 使用 `mybatis-plus-spring-boot4-starter` |
+| 数据库 | PostgreSQL | 驱动随 Boot 版本管理 |
+| 数学计算 | Apache Commons Numbers 1.3 | core / angle / arrays / complex / fraction 等 11 个模块 |
+| 工具 | Lombok | |
+| 测试 | JUnit 5 + Mockito（subclass mock maker） | Surefire 已配置 `-Djdk.attach.allowAttachSelf=true` |
 
-## 3. 工程结构
+## 项目结构
 
-```
-test-code
-├── pom.xml                          # Maven 构建配置
-├── mvnw / mvnw.cmd                  # Maven Wrapper 脚本
-├── HELP.md                          # Spring Initializr 生成的参考链接
-├── doc/                             # 联调辅助资料
-│   ├── HelloController.http         # IDEA HTTP Client 请求示例
-│   ├── 任务中心新增请求体.json        # 任务中心接口请求体样例
-│   └── 任务中心新增响应体.json        # 任务中心接口响应体样例
-├── src/main/java/com/goaerion/testcode
-│   ├── TestCodeApplication.java     # Spring Boot 启动类
-│   └── http
-│       ├── config                   # HTTP 客户端基础设施
-│       │   ├── HttpClientProvider.java     # 共享 JDK HttpClient 单例（SSL/超时配置）
-│       │   ├── HttpClientInterceptor.java  # 全局拦截器 SPI（函数式接口）
-│       │   └── TraceIdInterceptor.java     # X-Trace-Id 链路追踪拦截器实现
-│       ├── controller
-│       │   └── HelloController.java        # 测试入口（/test/hello、/test/centerTask）
-│       ├── dto
-│       │   ├── assistant            # 智能助手接口相关 DTO
-│       │   └── centertask           # 任务中心接口相关 DTO
-│       └── service
-│           ├── HttpService.java            # 通用 HTTP 服务接口（含 buildUrl 默认方法）
-│           ├── HttpServiceFactory.java     # 工厂 + 策略：按配置选择实现
-│           ├── CenterTaskService.java      # 任务中心请求体构建接口
-│           └── impl
-│               ├── JdkHttpServiceImpl.java          # JDK HttpClient 实现
-│               ├── RestTemplateHttpServiceImpl.java # RestTemplate 实现
-│               ├── RestClientHttpServiceImpl.java   # RestClient 实现（默认）
-│               └── CenterTaskServiceImpl.java       # 任务请求体/按钮结构组装
-└── src/test/java
-    └── TestCodeApplicationTests.java       # 默认上下文加载测试
+```text
+src/main/java/com/goaerion/testcode
+└── http
+    ├── config          # HttpClient 装配、TraceId / 拦截器配置
+    │   ├── HttpClientInterceptor.java
+    │   ├── HttpClientProvider.java
+    │   └── TraceIdInterceptor.java
+    ├── controller      # HelloController / MarketDataController / AssetCatalogsController
+    ├── dto
+    │   ├── twelvedata      # Price / Quote / TimeSeries / TimeSeriesCross 响应
+    │   ├── assetcatalogs   # 股票、外汇、加密货币、ETF、基金、商品、债券等目录
+    │   ├── assistant       # 助手相关 DTO
+    │   └── centertask      # 中心任务相关 DTO
+    └── service
+        ├── HttpService.java            # 统一 HTTP 出口接口
+        ├── HttpServiceFactory.java     # 工厂 + 策略：按 bean 名称选择实现
+        └── impl
+            ├── JdkHttpServiceImpl.java
+            ├── RestTemplateHttpServiceImpl.java
+            └── RestClientHttpServiceImpl.java
 ```
 
-## 4. 核心设计
-
-### 4.1 HttpService 抽象（策略模式）
-
-[HttpService.java](src/main/java/com/goaerion/testcode/http/service/HttpService.java) 定义了统一的 HTTP 发送契约：
-
-- `<T> T get(url, params, headers, responseType)`：参数经 URL 编码后拼接到 query string；
-- `<T> T post / put(url, body, headers, responseType)`：请求体统一序列化为 JSON；
-- `<T> T delete(url, headers, responseType)`；
-- `buildUrl(...)`：default 方法，统一实现 GET 参数拼接与 URL 编码复用。
-
-http / https 均支持，由 URL 中的 scheme 自动识别，业务代码无需针对协议特殊处理。
-
-### 4.2 三种实现与工厂切换
-
-三种实现均注册为 Spring Bean，底层共享同一份 `HttpClientProvider` 配置：
-
-| 实现类 | Bean 名称 | 底层 |
-| --- | --- | --- |
-| [JdkHttpServiceImpl](src/main/java/com/goaerion/testcode/http/service/impl/JdkHttpServiceImpl.java) | `jdkHttpServiceImpl` | 原生 `java.net.http.HttpClient` |
-| [RestTemplateHttpServiceImpl](src/main/java/com/goaerion/testcode/http/service/impl/RestTemplateHttpServiceImpl.java) | `restTemplateHttpServiceImpl` | RestTemplate + JdkClientHttpRequestFactory |
-| [RestClientHttpServiceImpl](src/main/java/com/goaerion/testcode/http/service/impl/RestClientHttpServiceImpl.java) | `restClientHttpServiceImpl` | RestClient + JdkClientHttpRequestFactory（**默认**） |
-
-[HttpServiceFactory](src/main/java/com/goaerion/testcode/http/service/HttpServiceFactory.java) 利用 Spring 注入 `Map<String, HttpService>`（key 为 bean 名称），按 `http.service.impl` 配置选择实现，未配置时默认使用 `restClientHttpServiceImpl`：
-
-```properties
-http.service.impl=jdkHttpServiceImpl
+```text
+src/test/java
+├── com/goaerion/numberscore   # Commons Numbers：算术、精度、范数等测试
+├── com/goaerion/testcode/http # 控制器集成测试（目录 / 报价 / 时间序列）
+└── DfeTest.java
 ```
 
-### 4.3 统一配置（HttpClientProvider）
+## 核心设计
 
-[HttpClientProvider](src/main/java/com/goaerion/testcode/http/config/HttpClientProvider.java) 是共享的 JDK HttpClient 单例（线程安全），统一管理：
+### HTTP 客户端工厂（工厂 + 策略）
 
-- **SSL 策略**：`http.ssl.trust-all=true` 时跳过 https 证书校验（仅限内网/测试环境）；
-- **连接超时**：`http.timeout.connect`（默认 10s），JDK HttpClient 全局生效；
-- **读超时**：`http.timeout.read`（默认 30s），供各实现按请求应用。
+- 所有 `HttpService` 实现由 Spring 注入为 `Map<String, HttpService>`（key = bean 名称）；
+- 通过配置项 `http.service.impl` 指定默认实现，可选值：
+  - `jdkHttpServiceImpl`
+  - `restTemplateHttpServiceImpl`
+  - `restClientHttpServiceImpl`（**默认**）
+- 统一支持连接/读取分级超时（`http.timeout.connect` / `http.timeout.read`，支持 `10s`、`500ms` 格式）；
+- `http.ssl.trust-all=true` 可跳过自签名证书校验（仅限内网/测试环境）。
 
-### 4.4 全局拦截器机制
+### TwelveData 行情对接
 
-[HttpClientInterceptor](src/main/java/com/goaerion/testcode/http/config/HttpClientInterceptor.java) 是函数式 SPI，在请求发送前回调，可读取 method / url 并向请求头追加内容。实现接口并声明为 Spring Bean 即自动被三个实现类应用。
+- 接口地址集中配置在 `application-twelvedata.yml`，由 `application.yml` 通过 `spring.config.import` 引入；
+- 覆盖：`time_series`、`time_series/cross`、`quote`、`price`，以及股票/外汇/加密货币/ETF/基金/商品/债券等资产目录与交易所、市场状态、技术指标等辅助接口；
+- API Key 通过环境变量 `TWELVEDATA_APIKEY` 注入（**请勿将真实 Key 提交到仓库**）。
 
-内置实现 [TraceIdInterceptor](src/main/java/com/goaerion/testcode/http/config/TraceIdInterceptor.java)：为每个请求追加 `X-Trace-Id` 请求头（已存在时沿用上游值），便于跨服务串联日志。
+## 快速开始
 
-### 4.5 日志与安全
+### 环境要求
 
-- 三个实现类均输出请求/响应日志，日志前缀分别为 `[JDK-HttpClient]` / `[RestTemplate]` / `[RestClient]`；
-- 日志中的 `Authorization` 请求头自动脱敏为 `***`；
-- 发送失败统一抛出 `IllegalStateException`，`InterruptedException` 场景会恢复线程中断标记。
+- JDK 17+
+- Maven 3.6+（或直接使用自带 Wrapper `./mvnw`）
+- PostgreSQL（可选，行情落库时需要）
 
-## 5. 接口说明
+### 配置
 
-启动应用后（默认端口 8080），提供两个 GET 测试接口，均要求调用方携带以下请求头：
-
-| 请求头 | 说明 |
-| --- | --- |
-| `currentuserid` | 当前用户工号 |
-| `environment` | 环境标识 |
-| `Authorization` | 鉴权令牌（Bearer Token） |
-
-### 5.1 GET /test/hello
-
-透传调用智能助手接口（`assistant.send-url`）：固定发送一条「今天上海的天气如何」的联网测试请求（advanced-mode-agent 模式、指定专家本体），返回 `AssistantResponse`。
-
-### 5.2 GET /test/centerTask
-
-透传调用任务中心新增任务接口（`center-task.send-url`）：由 `CenterTaskService` 组装任务请求体（含标题、标记、标签、可见字段、PC/移动端/内网共用的按钮配置等），返回 `CenterTaskResponse`。
-
-请求示例见 [doc/HelloController.http](doc/HelloController.http)。
-
-## 6. 配置说明
-
-配置文件：[application.properties](src/main/resources/application.properties)
-
-```properties
-# 智能助手接口地址
-assistant.send-url=http://192.168.6.114/cbrain-gateway/comac-ai/comacai/assistant/sendToAssistant
-
-# 任务中心新增任务接口地址
-center-task.send-url=http://192.168.6.20/cbrain-gateway/cbrain-task-server/cbrain-task/task/save
-
-# HttpService 实现选择（jdkHttpServiceImpl / restTemplateHttpServiceImpl / restClientHttpServiceImpl）
-#http.service.impl=restClientHttpServiceImpl
-
-# https 自签名证书时置为 true 跳过证书校验（仅限内网/测试环境，正式环境必须为 false）
-http.ssl.trust-all=false
-
-# HttpClient 超时分级配置
-http.timeout.connect=10s
-http.timeout.read=30s
-```
-
-## 7. 构建与运行
+通过环境变量注入敏感信息：
 
 ```bash
-# 编译打包（跳过测试可加 -DskipTests）
+export PG_HOST=localhost
+export PG_PORT=5432
+export PG_DB=quant
+export PG_USER=postgres
+export PG_PASSWORD=postgres
+export TWELVEDATA_APIKEY=your_api_key
+```
+
+### 构建 & 运行
+
+```bash
 ./mvnw clean package
-
-# 运行
 ./mvnw spring-boot:run
+```
 
-# 运行测试
+### 测试
+
+```bash
 ./mvnw test
 ```
 
-Windows 环境使用 `mvnw.cmd` 代替 `./mvnw`。启动后访问 `http://localhost:8080/test/hello` 或 `/test/centerTask` 进行验证（需携带第 5 节所述请求头）。
+> Mockito 使用 subclass mock maker（见 `src/test/resources/mockito-extensions`），
+> Surefire 已通过 `-Djdk.attach.allowAttachSelf=true` 允许 agent 自附加，兼容 JDK 21+。
+
+## 配置文件说明
+
+| 文件 | 作用 |
+| --- | --- |
+| `application.yml` | 主配置：数据源、MyBatis-Plus、HTTP 工厂与超时/SSL |
+| `application-twelvedata.yml` | TwelveData 全部接口地址与 API Key |
+| `application-other.yml` | 其他扩展场景配置 |
+
+## doc 目录
+
+| 子目录 | 内容 |
+| --- | --- |
+| `doc/quant/` | TwelveData 全量接口文档、资产行情获取与存储技术方案、技术指标说明（趋势/动量/量能/波动率/价格变换） |
+| `doc/database/` | MySQL / PostgreSQL 核心知识、事务与锁、高可用与优化、两者对比 |
+| `doc/interview/` | 系统设计、分布式高可用、中间件、Java 并发、Spring Cloud、Dubbo、限流熔断等面试题及参考答案 |
+| `doc/data-interview/` | 大数据体系（Hadoop / Hive / Spark / Flink / Kafka / 数据湖）面试知识 |

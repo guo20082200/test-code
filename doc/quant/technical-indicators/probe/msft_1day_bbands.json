@@ -1,0 +1,273 @@
+// GET https://api.twelvedata.com/bbands
+// params: symbol=MSFT&interval=1day&outputsize=50&adjust=none&apikey=***&time_period=20&sd=2&ma_type=SMA
+
+{
+  "meta" : {
+    "symbol" : "MSFT",
+    "interval" : "1day",
+    "currency" : "USD",
+    "exchange_timezone" : "America/New_York",
+    "exchange" : "NASDAQ",
+    "mic_code" : "XNGS",
+    "type" : "Common Stock",
+    "indicator" : {
+      "name" : "BBANDS - Bollinger Bands®",
+      "series_type" : "close",
+      "time_period" : 20,
+      "sd" : 2,
+      "ma_type" : "SMA"
+    }
+  },
+  "values" : [ {
+    "datetime" : "2026-11-06",
+    "upper_band" : "550.82091",
+    "middle_band" : "531.40750",
+    "lower_band" : "511.99410"
+  }, {
+    "datetime" : "2026-11-05",
+    "upper_band" : "551.10451",
+    "middle_band" : "531.63050",
+    "lower_band" : "512.15650"
+  }, {
+    "datetime" : "2026-11-04",
+    "upper_band" : "550.71392",
+    "middle_band" : "530.96450",
+    "lower_band" : "511.21508"
+  }, {
+    "datetime" : "2026-11-03",
+    "upper_band" : "545.79287",
+    "middle_band" : "529.66250",
+    "lower_band" : "513.53214"
+  }, {
+    "datetime" : "2026-11-02",
+    "upper_band" : "545.71392",
+    "middle_band" : "530.078003",
+    "lower_band" : "514.44209"
+  }, {
+    "datetime" : "2026-10-30",
+    "upper_band" : "542.83867",
+    "middle_band" : "530.98100",
+    "lower_band" : "519.12334"
+  }, {
+    "datetime" : "2026-10-29",
+    "upper_band" : "543.41671",
+    "middle_band" : "530.76201",
+    "lower_band" : "518.10730"
+  }, {
+    "datetime" : "2026-10-28",
+    "upper_band" : "544.78071",
+    "middle_band" : "529.89500",
+    "lower_band" : "515.0093020"
+  }, {
+    "datetime" : "2026-10-27",
+    "upper_band" : "545.59738",
+    "middle_band" : "528.98951",
+    "lower_band" : "512.38163"
+  }, {
+    "datetime" : "2026-10-26",
+    "upper_band" : "546.57817",
+    "middle_band" : "527.87100",
+    "lower_band" : "509.16384"
+  }, {
+    "datetime" : "2026-10-23",
+    "upper_band" : "546.94037",
+    "middle_band" : "526.70201",
+    "lower_band" : "506.46364"
+  }, {
+    "datetime" : "2026-10-22",
+    "upper_band" : "547.024324",
+    "middle_band" : "526.28500",
+    "lower_band" : "505.54568"
+  }, {
+    "datetime" : "2026-10-21",
+    "upper_band" : "549.21366",
+    "middle_band" : "525.12750",
+    "lower_band" : "501.041342"
+  }, {
+    "datetime" : "2026-10-20",
+    "upper_band" : "549.54507",
+    "middle_band" : "523.50950",
+    "lower_band" : "497.47393"
+  }, {
+    "datetime" : "2026-10-19",
+    "upper_band" : "549.79004",
+    "middle_band" : "521.81600",
+    "lower_band" : "493.84197"
+  }, {
+    "datetime" : "2026-10-16",
+    "upper_band" : "548.97157",
+    "middle_band" : "520.22050",
+    "lower_band" : "491.46943"
+  }, {
+    "datetime" : "2026-10-15",
+    "upper_band" : "549.090515",
+    "middle_band" : "518.45700",
+    "lower_band" : "487.82349"
+  }, {
+    "datetime" : "2026-10-14",
+    "upper_band" : "546.68307",
+    "middle_band" : "516.37250",
+    "lower_band" : "486.061936"
+  }, {
+    "datetime" : "2026-10-13",
+    "upper_band" : "545.44207",
+    "middle_band" : "514.20300",
+    "lower_band" : "482.96393"
+  }, {
+    "datetime" : "2026-10-12",
+    "upper_band" : "540.89862",
+    "middle_band" : "511.88650",
+    "lower_band" : "482.87438"
+  }, {
+    "datetime" : "2026-10-09",
+    "upper_band" : "535.90740",
+    "middle_band" : "510.099498",
+    "lower_band" : "484.29160"
+  }, {
+    "datetime" : "2026-10-08",
+    "upper_band" : "531.95313",
+    "middle_band" : "508.12750",
+    "lower_band" : "484.30187"
+  }, {
+    "datetime" : "2026-10-07",
+    "upper_band" : "530.40616",
+    "middle_band" : "506.61900",
+    "lower_band" : "482.83183"
+  }, {
+    "datetime" : "2026-10-06",
+    "upper_band" : "526.82726",
+    "middle_band" : "504.71350",
+    "lower_band" : "482.59974"
+  }, {
+    "datetime" : "2026-10-05",
+    "upper_band" : "522.40862",
+    "middle_band" : "502.94600",
+    "lower_band" : "483.48338"
+  }, {
+    "datetime" : "2026-10-02",
+    "upper_band" : "518.27136",
+    "middle_band" : "501.67200",
+    "lower_band" : "485.072645"
+  }, {
+    "datetime" : "2026-10-01",
+    "upper_band" : "516.76008",
+    "middle_band" : "501.30150",
+    "lower_band" : "485.84291"
+  }, {
+    "datetime" : "2026-09-30",
+    "upper_band" : "515.13083",
+    "middle_band" : "500.50250",
+    "lower_band" : "485.87417"
+  }, {
+    "datetime" : "2026-09-29",
+    "upper_band" : "513.39517",
+    "middle_band" : "499.90850",
+    "lower_band" : "486.42182"
+  }, {
+    "datetime" : "2026-09-28",
+    "upper_band" : "513.10558",
+    "middle_band" : "499.82500",
+    "lower_band" : "486.54441"
+  }, {
+    "datetime" : "2026-09-25",
+    "upper_band" : "514.044090",
+    "middle_band" : "500.040500",
+    "lower_band" : "486.036910"
+  }, {
+    "datetime" : "2026-09-24",
+    "upper_band" : "511.64531",
+    "middle_band" : "499.48500",
+    "lower_band" : "487.32469"
+  }, {
+    "datetime" : "2026-09-23",
+    "upper_band" : "511.62608",
+    "middle_band" : "499.40700",
+    "lower_band" : "487.18792"
+  }, {
+    "datetime" : "2026-09-22",
+    "upper_band" : "511.61552",
+    "middle_band" : "498.96300",
+    "lower_band" : "486.31048"
+  }, {
+    "datetime" : "2026-09-21",
+    "upper_band" : "512.063623",
+    "middle_band" : "498.42850",
+    "lower_band" : "484.79338"
+  }, {
+    "datetime" : "2026-09-18",
+    "upper_band" : "512.56509",
+    "middle_band" : "497.51000",
+    "lower_band" : "482.45491"
+  }, {
+    "datetime" : "2026-09-17",
+    "upper_band" : "513.48597",
+    "middle_band" : "496.87850",
+    "lower_band" : "480.27103"
+  }, {
+    "datetime" : "2026-09-16",
+    "upper_band" : "513.68343",
+    "middle_band" : "496.20650",
+    "lower_band" : "478.72957"
+  }, {
+    "datetime" : "2026-09-15",
+    "upper_band" : "514.21776",
+    "middle_band" : "495.77300",
+    "lower_band" : "477.32825"
+  }, {
+    "datetime" : "2026-09-14",
+    "upper_band" : "514.54592",
+    "middle_band" : "494.93450",
+    "lower_band" : "475.32309"
+  }, {
+    "datetime" : "2026-09-11",
+    "upper_band" : "513.45246",
+    "middle_band" : "494.43400",
+    "lower_band" : "475.41555"
+  }, {
+    "datetime" : "2026-09-10",
+    "upper_band" : "513.53847",
+    "middle_band" : "494.49650",
+    "lower_band" : "475.45453"
+  }, {
+    "datetime" : "2026-09-09",
+    "upper_band" : "513.53818",
+    "middle_band" : "494.49600",
+    "lower_band" : "475.45382"
+  }, {
+    "datetime" : "2026-09-08",
+    "upper_band" : "514.51679",
+    "middle_band" : "495.10400",
+    "lower_band" : "475.69121"
+  }, {
+    "datetime" : "2026-09-04",
+    "upper_band" : "515.68774",
+    "middle_band" : "495.70950",
+    "lower_band" : "475.73126"
+  }, {
+    "datetime" : "2026-09-03",
+    "upper_band" : "515.71422",
+    "middle_band" : "495.72400",
+    "lower_band" : "475.73378"
+  }, {
+    "datetime" : "2026-09-02",
+    "upper_band" : "514.19859",
+    "middle_band" : "495.21100",
+    "lower_band" : "476.22341"
+  }, {
+    "datetime" : "2026-09-01",
+    "upper_band" : "514.0082627",
+    "middle_band" : "494.74300",
+    "lower_band" : "475.47773"
+  }, {
+    "datetime" : "2026-08-31",
+    "upper_band" : "513.39407",
+    "middle_band" : "494.33250",
+    "lower_band" : "475.27093"
+  }, {
+    "datetime" : "2026-08-28",
+    "upper_band" : "511.64908",
+    "middle_band" : "493.35050",
+    "lower_band" : "475.051918"
+  } ],
+  "status" : "ok"
+}

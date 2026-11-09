@@ -1,0 +1,171 @@
+// GET https://api.twelvedata.com/rsi
+// params: symbol=MSFT&interval=1day&outputsize=50&adjust=none&apikey=***&time_period=14
+
+{
+  "meta" : {
+    "symbol" : "MSFT",
+    "interval" : "1day",
+    "currency" : "USD",
+    "exchange_timezone" : "America/New_York",
+    "exchange" : "NASDAQ",
+    "mic_code" : "XNGS",
+    "type" : "Common Stock",
+    "indicator" : {
+      "name" : "RSI - Relative Strength Index",
+      "series_type" : "close",
+      "time_period" : 14
+    }
+  },
+  "values" : [ {
+    "datetime" : "2026-11-06",
+    "rsi" : "52.14154"
+  }, {
+    "datetime" : "2026-11-05",
+    "rsi" : "54.44905"
+  }, {
+    "datetime" : "2026-11-04",
+    "rsi" : "64.32131"
+  }, {
+    "datetime" : "2026-11-03",
+    "rsi" : "49.39555"
+  }, {
+    "datetime" : "2026-11-02",
+    "rsi" : "40.12866"
+  }, {
+    "datetime" : "2026-10-30",
+    "rsi" : "49.016449"
+  }, {
+    "datetime" : "2026-10-29",
+    "rsi" : "55.35097"
+  }, {
+    "datetime" : "2026-10-28",
+    "rsi" : "56.062142"
+  }, {
+    "datetime" : "2026-10-27",
+    "rsi" : "56.30925"
+  }, {
+    "datetime" : "2026-10-26",
+    "rsi" : "57.23897"
+  }, {
+    "datetime" : "2026-10-23",
+    "rsi" : "52.61062"
+  }, {
+    "datetime" : "2026-10-22",
+    "rsi" : "50.50135"
+  }, {
+    "datetime" : "2026-10-21",
+    "rsi" : "58.93006"
+  }, {
+    "datetime" : "2026-10-20",
+    "rsi" : "58.34265"
+  }, {
+    "datetime" : "2026-10-19",
+    "rsi" : "59.55098"
+  }, {
+    "datetime" : "2026-10-16",
+    "rsi" : "57.32777"
+  }, {
+    "datetime" : "2026-10-15",
+    "rsi" : "65.043898"
+  }, {
+    "datetime" : "2026-10-14",
+    "rsi" : "62.44641"
+  }, {
+    "datetime" : "2026-10-13",
+    "rsi" : "70.73028"
+  }, {
+    "datetime" : "2026-10-12",
+    "rsi" : "69.85524"
+  }, {
+    "datetime" : "2026-10-09",
+    "rsi" : "67.46789"
+  }, {
+    "datetime" : "2026-10-08",
+    "rsi" : "61.69506"
+  }, {
+    "datetime" : "2026-10-07",
+    "rsi" : "68.13776"
+  }, {
+    "datetime" : "2026-10-06",
+    "rsi" : "67.93773"
+  }, {
+    "datetime" : "2026-10-05",
+    "rsi" : "66.17154"
+  }, {
+    "datetime" : "2026-10-02",
+    "rsi" : "62.62141"
+  }, {
+    "datetime" : "2026-10-01",
+    "rsi" : "60.22482"
+  }, {
+    "datetime" : "2026-09-30",
+    "rsi" : "60.30075"
+  }, {
+    "datetime" : "2026-09-29",
+    "rsi" : "58.38177"
+  }, {
+    "datetime" : "2026-09-28",
+    "rsi" : "58.55522"
+  }, {
+    "datetime" : "2026-09-25",
+    "rsi" : "63.21666"
+  }, {
+    "datetime" : "2026-09-24",
+    "rsi" : "54.36287"
+  }, {
+    "datetime" : "2026-09-23",
+    "rsi" : "56.19453"
+  }, {
+    "datetime" : "2026-09-22",
+    "rsi" : "54.81815"
+  }, {
+    "datetime" : "2026-09-21",
+    "rsi" : "57.14188"
+  }, {
+    "datetime" : "2026-09-18",
+    "rsi" : "53.14130"
+  }, {
+    "datetime" : "2026-09-17",
+    "rsi" : "55.58409"
+  }, {
+    "datetime" : "2026-09-16",
+    "rsi" : "51.71656"
+  }, {
+    "datetime" : "2026-09-15",
+    "rsi" : "55.85051"
+  }, {
+    "datetime" : "2026-09-14",
+    "rsi" : "61.38928"
+  }, {
+    "datetime" : "2026-09-11",
+    "rsi" : "56.68341"
+  }, {
+    "datetime" : "2026-09-10",
+    "rsi" : "55.023103"
+  }, {
+    "datetime" : "2026-09-09",
+    "rsi" : "54.62313"
+  }, {
+    "datetime" : "2026-09-08",
+    "rsi" : "55.96867"
+  }, {
+    "datetime" : "2026-09-04",
+    "rsi" : "59.36328"
+  }, {
+    "datetime" : "2026-09-03",
+    "rsi" : "66.11057"
+  }, {
+    "datetime" : "2026-09-02",
+    "rsi" : "60.83444"
+  }, {
+    "datetime" : "2026-09-01",
+    "rsi" : "63.74452"
+  }, {
+    "datetime" : "2026-08-31",
+    "rsi" : "68.27176"
+  }, {
+    "datetime" : "2026-08-28",
+    "rsi" : "73.067412"
+  } ],
+  "status" : "ok"
+}

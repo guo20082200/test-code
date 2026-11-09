@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goaerion.testcode.http.quant.storage.TdSymbolMapper">
+
+    <!-- 查询所有参与同步的标的（enabled = TRUE），调度器同步范围的唯一来源 -->
+    <select id="selectEnabledSymbols" resultType="com.goaerion.testcode.http.quant.entity.TdSymbol">
+        SELECT id,
+               symbol,
+               exchange,
+               mic_code,
+               asset_type,
+               instrument_type,
+               currency,
+               exchange_timezone,
+               interval_set,
+               enabled,
+               created_at,
+               updated_at
+        FROM td_symbol
+        WHERE enabled = TRUE
+        ORDER BY symbol
+    </select>
+
+</mapper>
