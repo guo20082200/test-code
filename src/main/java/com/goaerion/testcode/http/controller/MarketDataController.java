@@ -2,6 +2,7 @@ package com.goaerion.testcode.http.controller;
 
 import com.goaerion.testcode.http.dto.twelvedata.PriceResponse;
 import com.goaerion.testcode.http.dto.twelvedata.QuoteResponse;
+import com.goaerion.testcode.http.dto.twelvedata.SmaResponse;
 import com.goaerion.testcode.http.dto.twelvedata.TimeSeriesCrossResponse;
 import com.goaerion.testcode.http.dto.twelvedata.TimeSeriesResponse;
 import com.goaerion.testcode.http.service.HttpServiceFactory;
@@ -45,6 +46,12 @@ public class MarketDataController {
          */
         @Value("${twelvedata.price-send-url}")
         private String twelvedataPriceSendUrl;
+
+        /**
+         * Twelve Data 简单移动平均线（SMA）技术指标接口地址（见 application-twelvedata.yml 的 twelvedata.sma-send-url）
+         */
+        @Value("${twelvedata.sma-send-url}")
+        private String twelvedataSmaSendUrl;
 
         /**
          * Twelve Data API key（见 application.properties 的 twelvedata.apikey）
@@ -167,5 +174,43 @@ public class MarketDataController {
                 // 3. 通过工厂获取实现，发送请求并处理响应结果
                 return httpServiceFactory.getHttpService()
                                 .get(twelvedataPriceSendUrl, params, headers, PriceResponse.class);
+        }
+
+        /**
+         * 透传调用 Twelve Data 简单移动平均线（SMA）技术指标接口，获取标的的 SMA 时间序列
+         * <p>接口文档见 doc/quant/technical-indicators/01-overlap-studies/sma.md
+         * <p>当前仅透传返回远端数据，不做数据库保存
+         *
+         * @param symbol      标的代码，如 AAPL、EUR/USD、ETH/BTC
+         * @param interval    时间间隔：1min/5min/15min/30min/45min/1h/2h/4h/8h/1day/1week/1month
+         * @param timePeriod  计算周期数（1~800，默认 9），不传则使用 Twelve Data 默认值
+         * @param seriesType  计算所用价格类型：close/open/high/low/volume（默认 close）
+         * @param outputsize  数据点数量（1~5000，默认 30），不传则使用 Twelve Data 默认值
+         * @param includeOhlc 是否在结果中附带 OHLC 及成交量（默认 false）
+         */
+        @GetMapping("/sma")
+        public SmaResponse sma(
+                        @RequestParam(defaultValue = "AAPL") String symbol,
+                        @RequestParam(defaultValue = "1day") String interval,
+                        @RequestParam(required = false) Integer timePeriod,
+                        @RequestParam(required = false) String seriesType,
+                        @RequestParam(required = false) Integer outputsize,
+                        @RequestParam(required = false) Boolean includeOhlc) {
+                // 1. 写发送http请求的查询参数（GET，无请求体）
+                Map<String, Object> params = new LinkedHashMap<>();
+                params.put("symbol", symbol);
+                params.put("interval", interval);
+                params.put("time_period", timePeriod);
+                params.put("series_type", seriesType);
+                params.put("outputsize", outputsize);
+                params.put("include_ohlc", includeOhlc);
+                params.put("apikey", twelvedataApiKey);
+
+                // 2. Twelve Data 鉴权走 query 参数，无需额外请求头，传空 Map 即可
+                Map<String, String> headers = Map.of();
+
+                // 3. 通过工厂获取实现，发送请求并处理响应结果
+                return httpServiceFactory.getHttpService()
+                                .get(twelvedataSmaSendUrl, params, headers, SmaResponse.class);
         }
 }

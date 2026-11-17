@@ -1,0 +1,244 @@
+AC                  加速/减速振荡器
+ACCBANDS            加速带
+ACOS                向量三角函数 ACos（反余弦）
+AD                  蔡金累积/派发线
+ADD                 向量算术加法
+ADOSC               蔡金累积/派发振荡器
+ADR                 平均日振幅
+ADX                 平均趋向指数
+ADXR                平均趋向指数评级
+ALLIGATOR           威廉姆斯鳄鱼线
+ALMA                Arnaud Legoux 移动平均
+AO                  动量震荡指标（AO）
+APO                 绝对价格振荡器
+AROON               阿隆指标
+AROONOSC            阿隆振荡器
+ASI                 威尔德累积摆动指数
+ASIN                向量三角函数 ASin（反正弦）
+ATAN                向量三角函数 ATan（反正切）
+ATR                 平均真实波幅
+AVGDEV              平均偏差
+AVGPRICE            平均价格
+BBANDS              布林带
+BBW                 布林带宽度
+BETA                贝塔系数
+BOP                 力量平衡指标
+CCI                 顺势指标（CCI）
+CDL2CROWS           两只乌鸦
+CDL3BLACKCROWS      三只黑乌鸦
+CDL3INSIDE          三内部上涨/下跌
+CDL3LINESTRIKE      三线打击
+CDL3OUTSIDE         三外部上涨/下跌
+CDL3STARSINSOUTH    南方三星
+CDL3WHITESOLDIERS   三个白兵（红三兵）
+CDLABANDONEDBABY    弃婴形态
+CDLADVANCEBLOCK     前方受阻形态
+CDLBELTHOLD         捉腰带线
+CDLBREAKAWAY        脱离形态
+CDLCLOSINGMARUBOZU  收盘光头光脚线
+CDLCONCEALBABYSWALL 藏婴吞没形态
+CDLCOUNTERATTACK    反击线
+CDLDARKCLOUDCOVER   乌云盖顶
+CDLDOJI             十字星
+CDLDOJISTAR         十字星线
+CDLDRAGONFLYDOJI    蜻蜓十字星
+CDLENGULFING        吞没形态
+CDLEVENINGDOJISTAR  黄昏十字星
+CDLEVENINGSTAR      黄昏之星
+CDLGAPSIDESIDEWHITE 跳空并列阴阳白线
+CDLGRAVESTONEDOJI   墓碑十字星
+CDLHAMMER           锤头线
+CDLHANGINGMAN       上吊线
+CDLHARAMI           孕线形态
+CDLHARAMICROSS      十字孕线形态
+CDLHIGHWAVE         高浪线
+CDLHIKKAKE          陷阱形态（Hikkake）
+CDLHIKKAKEMOD       改良陷阱形态
+CDLHOMINGPIGEON     家鸽形态
+CDLIDENTICAL3CROWS  相同三乌鸦
+CDLINNECK           颈内线
+CDLINVERTEDHAMMER   倒锤头线
+CDLKICKING          反冲形态（踢线）
+CDLKICKINGBYLENGTH  反冲形态——多空由较长光头光脚线决定
+CDLLADDERBOTTOM     梯底形态
+CDLLONGLEGGEDDOJI   长腿十字星
+CDLLONGLINE         长实体线
+CDLMARUBOZU         光头光脚线
+CDLMATCHINGLOW      相同低价
+CDLMATHOLD          铺垫形态
+CDLMORNINGDOJISTAR  早晨十字星
+CDLMORNINGSTAR      早晨之星
+CDLONNECK           颈上线
+CDLPIERCING         曙光初现（刺透形态）
+CDLRICKSHAWMAN      黄包车夫十字星
+CDLRISEFALL3METHODS 上升/下降三法
+CDLSEPARATINGLINES  分离线
+CDLSHOOTINGSTAR     射击之星
+CDLSHORTLINE        短实体线
+CDLSPINNINGTOP      纺锤线（陀螺线）
+CDLSTALLEDPATTERN   停顿形态
+CDLSTICKSANDWICH    夹心形态（棒状三明治）
+CDLTAKURI           探底蜡烛（下影极长的蜻蜓十字）
+CDLTASUKIGAP        田助跳空
+CDLTHRUSTING        插入线
+CDLTRISTAR          三星形态
+CDLUNIQUE3RIVER     奇特三河床
+CDLUPSIDEGAP2CROWS  向上跳空两只乌鸦
+CDLXSIDEGAP3METHODS 向上/向下跳空三法
+CE                  吊灯止损
+CEIL                向量向上取整
+CG                  重心振荡器
+CHOP                震荡指数
+CHOPTR              震荡指数（真实波幅箱体版）
+CKSP                Chande Kroll 止损
+CMF                 蔡金资金流量
+CMO                 Chande 动量振荡器
+CMOU                Chande 动量振荡器（未平滑）
+COPPOCK             科波克曲线
+CORREL              皮尔逊相关系数（r）
+COS                 向量三角函数 Cos（余弦）
+COSH                向量三角函数 Cosh（双曲余弦）
+CRSI                康纳斯相对强弱指数
+CTI                 相关趋势指标
+CUMSUM              累加和
+CVI                 蔡金波动率
+DEMA                双指数移动平均
+DIV                 向量算术除法
+DONCHIAN            唐奇安通道
+DOSC                导数振荡器
+DPO                 去趋势价格振荡器
+DX                  趋向指数
+EFI                 埃尔德力度指数
+EMA                 指数移动平均
+EMV                 阿姆斯简易波动指标
+ER                  考夫曼效率系数
+ERI                 埃尔德射线指数（多头/空头力度）
+EXP                 向量指数（e 的幂）
+FISHER              费雪变换
+FLOOR               向量向下取整
+FOSC                预测振荡器
+FRACTAL             威廉姆斯分形
+FRAMA               分形自适应移动平均
+GATOR               鳄鱼振荡器
+HA                  平均K线（Heikin-Ashi）
+HMA                 赫尔移动平均
+HT_DCPERIOD         希尔伯特变换——主周期长度
+HT_DCPHASE          希尔伯特变换——主周期相位
+HT_PHASOR           希尔伯特变换——相量分量
+HT_SINE             希尔伯特变换——正弦波
+HT_TRENDLINE        希尔伯特变换——瞬时趋势线
+HT_TRENDMODE        希尔伯特变换——趋势/周期模式
+IBS                 内部K线强度
+ICHIMOKU            一目均衡表
+IMI                 日内动量指数
+KAMA                考夫曼自适应移动平均
+KC                  肯特纳通道
+KDJ                 KDJ 随机指标
+KST                 确然指标（KST）
+KSTEXT              确然指标（可设均线类型）
+KURTOSIS            滚动超额峰度
+KVO                 克林格成交量振荡器
+LINEARREG           线性回归
+LINEARREG_ANGLE     线性回归角度
+LINEARREG_INTERCEPT 线性回归截距
+LINEARREG_SLOPE     线性回归斜率
+LN                  向量自然对数
+LOG10               向量常用对数（Log10）
+MA                  移动平均
+MACD                指数平滑异同移动平均（MACD）
+MACDEXT             MACD（可设均线类型）
+MACDFIX             MACD（固定 12/26 参数）
+MACDV               MACD-V——波动率归一化动量
+MAMA                MESA 自适应移动平均
+MARKETFI            市场促进指数
+MASSI               质量指数
+MAVP                可变周期移动平均
+MAX                 指定周期内最高值
+MAXINDEX            指定周期内最高值的位置
+MCGD                麦金利动态均线
+MEDIAN              滚动中位数
+MEDPRICE            中位价格
+MFI                 资金流量指标
+MIDPOINT            周期中点值
+MIDPRICE            周期中位价格
+MIN                 指定周期内最低值
+MININDEX            指定周期内最低值的位置
+MINMAX              指定周期内最高值与最低值
+MINMAXINDEX         指定周期内最高值与最低值的位置
+MINUS_DI            负向趋向指标（-DI）
+MINUS_DM            负向趋向变动（-DM）
+MOM                 动量
+MULT                向量算术乘法
+NATR                归一化平均真实波幅
+NVI                 负成交量指数
+OBV                 能量潮（OBV）
+PERCENTB            布林带 %B
+PERCENTILE          百分位数（最近秩）
+PERCENTRANK         百分位排名
+PLUS_DI             正向趋向指标（+DI）
+PLUS_DM             正向趋向变动（+DM）
+PPO                 百分比价格振荡器
+PSO                 首席随机振荡器
+PVI                 正成交量指数
+PVO                 百分比成交量振荡器
+PVT                 价量趋势
+QSTICK              Qstick 指标（实体均线）
+RMA                 威尔德平滑移动平均
+ROC                 变动率：((价格/前值)-1)*100
+ROCP                变动率（百分比）：(价格-前值)/前值
+ROCR                变动率比值：价格/前值
+ROCR100             变动率比值（100 倍）：(价格/前值)*100
+ROGERSSATCHELL      Rogers-Satchell 波动率
+RSI                 相对强弱指数
+RVI                 相对波动率指数
+RVIR                相对波动率指数（高/低精化版）
+RVOL                相对成交量
+SAR                 抛物线转向（SAR）
+SAREXT              抛物线转向（扩展版）
+SHARPE              滚动夏普比率
+SI                  威尔德摆动指数
+SIN                 向量三角函数 Sin（正弦）
+SINH                向量三角函数 Sinh（双曲正弦）
+SKEW                滚动偏度
+SMA                 简单移动平均
+SMI                 随机动量指数
+SORTINO             滚动索提诺比率
+SQRT                向量平方根
+SQZMOM              挤压动量与水平线
+STC                 沙夫趋势周期
+STDDEV              标准差
+STOCH               随机指标
+STOCHF              快速随机指标
+STOCHRSI            随机相对强弱指数
+SUB                 向量算术减法
+SUM                 求和
+SUPERTREND          超级趋势
+SWAK_2PHP           瑞士军刀——双极点高通滤波器
+SWAK_BP             瑞士军刀——带通滤波器
+SWAK_BUTTER         瑞士军刀——巴特沃斯滤波器
+SWAK_GAUSS          瑞士军刀——高斯滤波器
+SWAK_HP             瑞士军刀——高通滤波器
+T3                  三重指数移动平均（T3）
+TAN                 向量三角函数 Tan（正切）
+TANH                向量三角函数 Tanh（双曲正切）
+TEMA                三重指数移动平均
+TRANGE              真实波幅
+TRIMA               三角移动平均
+TRIX                三重平滑 EMA 的 1 日变动率（TRIX）
+TSF                 时间序列预测
+TSI                 真实强度指数
+TYPPRICE            典型价格
+ULTOSC              终极振荡器
+VAR                 方差
+VHF                 纵横过滤指标
+VIDYA               可变指数动态均线
+VORTEX              涡旋指标
+VWAP                成交量加权平均价
+VWMA                成交量加权移动平均
+WAD                 威廉姆斯累积/派发
+WAVETREND           波趋势振荡器
+WCLPRICE            加权收盘价
+WILLR               威廉姆斯 %R
+WMA                 加权移动平均
+ZIGZAG              之字转向
+ZLEMA               零延迟指数移动平均

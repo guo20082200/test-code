@@ -8,6 +8,10 @@ twelvedata:
   quote-send-url: https://api.twelvedata.com/quote
   # 最新价接口地址
   price-send-url: https://api.twelvedata.com/price
+  # 技术指标接口地址（简单移动平均线，见 doc/quant/technical-indicators/01-overlap-studies/sma.md）
+  sma-send-url: https://api.twelvedata.com/sma
+  # 技术指标通用 Base URL（102 个指标共用，指标名拼在路径上，见 doc/quant/technical-indicators/README.md）
+  indicator-base-url: https://api.twelvedata.com
   # 资产目录接口地址
   stocks-send-url: https://api.twelvedata.com/stocks
   forex-pairs-send-url: https://api.twelvedata.com/forex_pairs

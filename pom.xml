@@ -162,6 +162,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <argLine>-Djdk.attach.allowAttachSelf=true</argLine>
+                    <!-- 排除集成测试（@Tag("integration")，真实请求消耗 Twelve Data credits）：
+                         日常 mvn test 只跑单元测试；显式跑集成测试用 mvn test -Dgroups=integration -->
+                    <excludedGroups>integration</excludedGroups>
                 </configuration>
             </plugin>
         </plugins>
